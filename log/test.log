@@ -1,0 +1,318 @@
+  [1m[36m (68.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (75.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCompanies (20100323231443)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (82.5ms)[0m  [1mCREATE TABLE "companies" ("id" serial primary key, "name" character varying(50) NOT NULL, "address_1" character varying NOT NULL, "address_2" character varying, "city" character varying(100), "postal_code" character varying, "country_id" integer NOT NULL, "iso_country_code" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100323231443"]]
+  [1m[36m (23.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateWarehouses (20100324161027)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (134.1ms)[0m  [1mCREATE TABLE "warehouses" ("id" serial primary key, "name" character varying(100) NOT NULL, "description" character varying NOT NULL, "address_1" character varying NOT NULL, "addresss_2" character varying, "city" character varying NOT NULL, "postal_code" character varying, "country_id" integer NOT NULL, "code" character varying NOT NULL, "company_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100324161027"]]
+  [1m[36m (17.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSystemParameters (20100326160152)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (67.2ms)[0m  [1mCREATE TABLE "system_parameters" ("id" serial primary key, "code" character varying(3) NOT NULL, "name" character varying(50) NOT NULL, "description" character varying(100), "value" character varying(10) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326160152"]]
+  [1m[36m (18.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLocations (20100326215017)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (111.8ms)[0m  [1mCREATE TABLE "locations" ("id" serial primary key, "warehouse_id" integer NOT NULL, "zone" character varying(4) NOT NULL, "aisle" character varying(4) NOT NULL, "bay" character varying(4) NOT NULL, "level" character varying(4) NOT NULL, "position" character varying(4) NOT NULL, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "location" character varying NOT NULL, "pick_travel_sequence" integer, "storage_travel_sequence" integer, "storage_zone_id" integer, "fixed_pick_location_flag" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326215017"]]
+  [1m[36m (16.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20100326220538)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (91.2ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying NOT NULL, "last_name" character varying NOT NULL, "username" character varying NOT NULL, "hashed_password" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326220538"]]
+  [1m[36m (15.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateStorageZones (20100326221020)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (92.9ms)[0m  [1mCREATE TABLE "storage_zones" ("id" serial primary key, "code" character varying(5) NOT NULL, "name" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326221020"]]
+  [1m[36m (14.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAllocationZones (20100327024505)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (71.0ms)[0m  [1mCREATE TABLE "allocation_zones" ("id" serial primary key, "code" character varying NOT NULL, "name" character varying NOT NULL, "description" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100327024505"]]
+  [1m[36m (14.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductCategories (20100402140616)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (49.1ms)[0m  [1mCREATE TABLE "product_categories" ("id" serial primary key, "name" character varying(25) NOT NULL, "description" character varying(100) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402140616"]]
+  [1m[36m (13.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductSubcategories (20100402140829)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (38.4ms)[0m  [1mCREATE TABLE "product_subcategories" ("id" serial primary key, "product_category_id" integer NOT NULL, "name" character varying(25) NOT NULL, "description" character varying(100) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402140829"]]
+  [1m[36m (23.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCountries (20100402141715)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (94.4ms)[0m  [1mCREATE TABLE "countries" ("id" serial primary key, "name" character varying NOT NULL, "iso_code" character varying(3), "code" character varying(3) NOT NULL, "language" character varying(25), "telephone_country_code" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402141715"]]
+  [1m[36m (13.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProducts (20100402170047)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (94.6ms)[0m  [1mCREATE TABLE "products" ("id" serial primary key, "company_id" integer NOT NULL, "name" character varying(100) NOT NULL, "description" character varying(200), "supplier_id" integer, "gtin_number" character varying, "upc_number" character varying, "image_filename" character varying(100), "default_allocation_strategy_id" integer, "default_putaway_strategy_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402170047"]]
+  [1m[36m (37.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSuppliers (20100402170327)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (92.0ms)[0m  [1mCREATE TABLE "suppliers" ("id" serial primary key, "name" character varying(100) NOT NULL, "address_1" character varying, "address_2" character varying, "city" character varying, "postal_code" character varying, "country_id" integer, "state" character varying, "telephone" character varying(20) NOT NULL, "email" character varying(100) NOT NULL, "description" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402170327"]]
+  [1m[36m (22.4ms)[0m  [1mCOMMIT[0m
+Migrating to LocationAddAlias (20100403141836)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "locations" ADD "alias" character varying(100)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100403141836"]]
+  [1m[36m (6.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddSkuBarcode (20100405113954)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "products" ADD "barcode" character varying(100)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "alias" character varying(100)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100405113954"]]
+  [1m[35m (6.6ms)[0m  COMMIT
+Migrating to AddCompanyLogo (20100406011329)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "companies" ADD "logo_filename" character varying(100)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100406011329"]]
+  [1m[35m (6.7ms)[0m  COMMIT
+Migrating to AddProductCategory (20100406045858)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "category_type" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "products" ADD "category_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406045858"]]
+  [1m[36m (7.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDockDoors (20100406061303)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (40.9ms)[0m  [1mCREATE TABLE "dock_doors" ("id" serial primary key, "name" character varying(10) NOT NULL, "direction" character varying(1) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406061303"]]
+  [1m[36m (22.3ms)[0m  [1mCOMMIT[0m
+Migrating to LocationFields (20100406061424)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "locations" DROP "fixed_pick_location_flag"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "locations" ADD "type" character varying(10) NOT NULL
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" ADD "max_staging_units" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406061424"]]
+  [1m[36m (6.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCustomers (20100406143151)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (85.2ms)[0m  [1mCREATE TABLE "customers" ("id" serial primary key, "company_id" integer NOT NULL, "name" character varying(100) NOT NULL, "address_1" character varying(100), "address_2" character varying(100), "city" character varying(50), "postal_code" character varying(10), "state" character varying(50), "country_id" integer, "telephone" character varying(20), "email" character varying(50), "code" character varying(5), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406143151"]]
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePurchaseOrders (20100406143918)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (117.1ms)[0m  [1mCREATE TABLE "purchase_orders" ("id" serial primary key, "supplier_id" integer, "ship_date" date, "company_id" integer, "purchase_order_number" character varying, "purchase_order_type_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406143918"]]
+  [1m[36m (22.1ms)[0m  [1mCOMMIT[0m
+Migrating to RenameAsnToReceipt (20100406181355)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "containers" RENAME COLUMN "asn_id" TO "receipt_id"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (70.5ms)[0m  CREATE TABLE "allocation_strategies" ("id" serial primary key, "name" character varying(25) NOT NULL, "code" character varying(5) NOT NULL, "description" character varying(50), "warehouse_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (76.5ms)[0m  [1mCREATE TABLE "allocation_strategy_lines" ("id" serial primary key, "order_sequence" integer NOT NULL, "allocation_zone_id" integer NOT NULL, "containerization_method" character varying(25) NOT NULL, "minimum_pick_uom" character varying(25) NOT NULL, "containerization_level" character varying(25) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "allocation_strategy_id" integer NOT NULL) [0m
+  [1m[35m (109.2ms)[0m  CREATE TABLE "allocation_strategy_rules" ("id" serial primary key, "warehouse_id" integer NOT NULL, "order_sequence" integer NOT NULL, "order_type_id" integer, "product_category_id" integer, "product_subcategory_id" integer, "allocation_strategy_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "customer_id" integer, "customer_type_id" integer, "product_status_id" integer) 
+  [1m[36m (110.2ms)[0m  [1mCREATE TABLE "allocation_zones" ("id" serial primary key, "code" character varying NOT NULL, "name" character varying NOT NULL, "description" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp, "warehouse_id" integer) [0m
+  [1m[35m (54.1ms)[0m  CREATE TABLE "assignment_details" ("id" serial primary key, "assignment_id" integer NOT NULL, "expected_product_id" integer, "actual_product_id" integer, "expected_quantity" integer, "actual_quantity" integer, "from_container_id" integer, "to_container_id" integer, "start_time" date, "finish_time" date, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "start_location_type" character varying(25), "start_location_id" integer, "end_location_type" character varying(25), "end_location_id" integer, "wave_id" integer) 
+  [1m[36m (65.4ms)[0m  [1mCREATE TABLE "assignment_types" ("id" serial primary key, "code" character varying(5) NOT NULL, "name" character varying(25) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "company_id" integer NOT NULL) [0m
+  [1m[35m (51.1ms)[0m  CREATE TABLE "assignments" ("id" serial primary key, "user_id" integer, "start_timestamp" date, "finish_timestamp" date, "released_flag" boolean DEFAULT 't' NOT NULL, "created_at" timestamp, "updated_at" timestamp, "state" character varying(50) NOT NULL, "type" character varying(25) NOT NULL, "priority" integer) 
+  [1m[36m (97.9ms)[0m  [1mCREATE TABLE "companies" ("id" serial primary key, "name" character varying(50) NOT NULL, "address_1" character varying NOT NULL, "address_2" character varying, "city" character varying(100), "postal_code" character varying, "country_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "logo_filename" character varying(100), "default_quantity_uom_id" integer, "default_length_uom_id" integer, "default_weight_uom_id" integer) [0m
+  [1m[35m (53.6ms)[0m  CREATE TABLE "container_contents" ("id" serial primary key, "container_id" integer NOT NULL, "product_id" integer NOT NULL, "lot_id" integer NOT NULL, "product_status_id" integer, "quantity" decimal(8,2) NOT NULL, "receipt_line_id" integer, "order_line_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (54.3ms)[0m  [1mCREATE TABLE "container_types" ("id" serial primary key, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "maximum_weight" decimal(8,2) NOT NULL, "purpose" character varying(10), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (119.7ms)[0m  CREATE TABLE "containers" ("id" serial primary key, "lp" character varying(50) NOT NULL, "container_location_id" integer NOT NULL, "container_location_type" character varying NOT NULL, "container_type_id" integer, "length" decimal(8,2), "width" decimal(8,2), "height" decimal(8,2), "max_weight" decimal(8,2), "created_at" timestamp, "updated_at" timestamp, "receipt_id" integer, "parent_container_id" integer, "state" character varying(50) NOT NULL) 
+  [1m[36m (109.4ms)[0m  [1mCREATE TABLE "countries" ("id" serial primary key, "name" character varying NOT NULL, "iso_code" character varying(3), "language" character varying(25), "telephone_country_code" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (65.0ms)[0m  CREATE TABLE "customer_types" ("id" serial primary key, "company_id" integer NOT NULL, "code" character varying(5) NOT NULL, "description" character varying(25), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (109.1ms)[0m  [1mCREATE TABLE "customers" ("id" serial primary key, "company_id" integer NOT NULL, "name" character varying(100) NOT NULL, "address_1" character varying(100), "address_2" character varying(100), "city" character varying(50), "postal_code" character varying(10), "state" character varying(50), "country_id" integer, "telephone" character varying(20), "email" character varying(50), "code" character varying(5), "created_at" timestamp, "updated_at" timestamp, "customer_type_id" integer) [0m
+  [1m[35m (65.3ms)[0m  CREATE TABLE "dock_doors" ("id" serial primary key, "name" character varying(10) NOT NULL, "direction" character varying(25) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "warehouse_id" integer) 
+  [1m[36m (87.0ms)[0m  [1mCREATE TABLE "inventory_adjustment_types" ("id" serial primary key, "code" character varying(10) NOT NULL, "name" character varying(25) NOT NULL, "description" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (131.4ms)[0m  CREATE TABLE "inventory_adjustments" ("id" serial primary key, "inventory_adjustment_type_id" integer NOT NULL, "adjustment_type" character varying(10) NOT NULL, "adjustment_quantity" decimal(8,2) NOT NULL, "user_id" integer NOT NULL, "comments" text, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (86.3ms)[0m  [1mCREATE TABLE "location_types" ("id" serial primary key, "warehouse_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "maximum_containers" integer, "code" character varying(10) NOT NULL, "name" character varying(25) NOT NULL, "maximum_weight" decimal(8,2), "zone" boolean NOT NULL, "aisle" boolean NOT NULL, "bay" boolean NOT NULL, "level" boolean NOT NULL, "position" boolean NOT NULL) [0m
+  [1m[35m (118.5ms)[0m  CREATE TABLE "locations" ("id" serial primary key, "warehouse_id" integer NOT NULL, "zone" character varying, "aisle" character varying, "bay" character varying, "level" character varying, "position" character varying, "name" character varying NOT NULL, "pick_travel_sequence" integer, "storage_travel_sequence" integer, "created_at" timestamp, "updated_at" timestamp, "alias" character varying(100), "location_type_id" integer NOT NULL, "available_for_storage" boolean DEFAULT 'f' NOT NULL, "available_for_allocation" boolean DEFAULT 'f' NOT NULL, "allocation_zone_id" integer, "storage_zone_id" integer, "mix_products" boolean DEFAULT 'f' NOT NULL, "collapse_containers" boolean DEFAULT 'f' NOT NULL, "replenishable" boolean DEFAULT 'f' NOT NULL) 
+  [1m[36m (54.2ms)[0m  [1mCREATE TABLE "lots" ("id" serial primary key, "product_id" integer NOT NULL, "fifo_date" date NOT NULL, "product_status_id" integer, "created_at" timestamp, "updated_at" timestamp, "name" character varying(25) NOT NULL) [0m
+  [1m[35m (64.5ms)[0m  CREATE TABLE "order_lines" ("id" serial primary key, "line_sequence_number" integer NOT NULL, "product_id" integer NOT NULL, "lot_id" integer, "product_status_id" integer, "quantity_ordered" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "order_id" integer NOT NULL, "wave_id" integer, "allocation_strategy_id" integer) 
+  [1m[36m (65.2ms)[0m  [1mCREATE TABLE "order_types" ("id" serial primary key, "order_type" character varying(25) NOT NULL, "description" character varying(50), "created_at" timestamp, "updated_at" timestamp, "company_id" integer NOT NULL) [0m
+  [1m[35m (98.1ms)[0m  CREATE TABLE "orders" ("id" serial primary key, "order_number" character varying, "ship_date" date, "customer_id" integer, "received_date" date, "order_type_id" integer, "ship_address_1" character varying, "ship_address_2" character varying, "ship_city" character varying, "ship_postal_code" character varying, "ship_state" character varying, "ship_country_id" integer, "created_at" timestamp, "updated_at" timestamp, "company_id" integer, "state" character varying(50) NOT NULL, "warehouse_id" integer NOT NULL, "priority" integer) 
+  [1m[36m (54.9ms)[0m  [1mCREATE TABLE "product_categories" ("id" serial primary key, "name" character varying(25) NOT NULL, "description" character varying(100) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "company_id" integer) [0m
+  [1m[35m (65.5ms)[0m  CREATE TABLE "product_location_assignments" ("id" serial primary key, "product_id" integer NOT NULL, "location_id" integer NOT NULL, "replenishment_at" integer NOT NULL, "maximum_quantity" integer NOT NULL, "warehouse_id" integer NOT NULL, "replenish_to" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "allocation_strategy_id" integer NOT NULL) 
+  [1m[36m (65.2ms)[0m  [1mCREATE TABLE "product_packages" ("id" serial primary key, "logical_each" boolean, "logical_case" boolean, "logical_pallet" boolean, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "quantity" integer NOT NULL, "active" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp, "updated_at" timestamp, "product_id" integer, "uom_id" integer NOT NULL, "weight" decimal(8,2)) [0m
+  [1m[35m (65.1ms)[0m  CREATE TABLE "product_statuses" ("id" serial primary key, "code" character varying(5) NOT NULL, "description" character varying(50) NOT NULL, "allocatable" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp, "updated_at" timestamp, "company_id" integer NOT NULL) 
+  [1m[36m (65.1ms)[0m  [1mCREATE TABLE "product_subcategories" ("id" serial primary key, "product_category_id" integer NOT NULL, "name" character varying(25) NOT NULL, "description" character varying(100) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "company_id" integer) [0m
+  [1m[35m (54.4ms)[0m  CREATE TABLE "product_warehouse_setups" ("id" serial primary key, "product_id" integer NOT NULL, "warehouse_id" integer NOT NULL, "product_status_id" integer NOT NULL, "allocation_strategy_id" integer, "storage_strategy_id" integer, "created_at" timestamp, "updated_at" timestamp, "stack_height" integer, "lot_management_type" character varying(100) NOT NULL) 
+  [1m[36m (108.9ms)[0m  [1mCREATE TABLE "products" ("id" serial primary key, "company_id" integer NOT NULL, "name" character varying(100) NOT NULL, "description" character varying(200), "supplier_id" integer, "gtin_number" character varying, "upc_number" character varying, "image_filename" character varying(100), "created_at" timestamp, "updated_at" timestamp, "barcode" character varying(100), "alias" character varying(100), "product_category_id" integer, "product_subcategory_id" integer) [0m
+  [1m[35m (109.3ms)[0m  CREATE TABLE "purchase_order_lines" ("id" serial primary key, "line_number" integer, "purchase_order_id" integer NOT NULL, "product_id" integer NOT NULL, "quantity" decimal NOT NULL, "comments" text, "created_at" timestamp, "updated_at" timestamp, "product_status_id" integer, "state" character varying(20) NOT NULL) 
+  [1m[36m (108.4ms)[0m  [1mCREATE TABLE "purchase_order_types" ("id" serial primary key, "purchase_order_type" character varying(25) NOT NULL, "description" character varying(50), "created_at" timestamp, "updated_at" timestamp, "company_id" integer NOT NULL) [0m
+  [1m[35m (120.6ms)[0m  CREATE TABLE "purchase_orders" ("id" serial primary key, "supplier_id" integer, "ship_date" date, "company_id" integer, "purchase_order_number" character varying, "purchase_order_type_id" integer, "created_at" timestamp, "updated_at" timestamp, "state" character varying(50) NOT NULL) 
+  [1m[36m (119.4ms)[0m  [1mCREATE TABLE "receipt_lines" ("id" serial primary key, "receipt_id" integer NOT NULL, "lp" character varying(50) NOT NULL, "product_id" integer NOT NULL, "lot_id" integer NOT NULL, "product_status_id" integer, "quantity" decimal NOT NULL, "created_at" timestamp, "updated_at" timestamp, "dock_door_id" integer, "purchase_order_line_id" integer, "state" character varying(50) NOT NULL, "received_at" date, "received_by_user_id" integer) [0m
+  [1m[35m (76.0ms)[0m  CREATE TABLE "receipt_types" ("id" serial primary key, "name" character varying(25) NOT NULL, "code" character varying(50) NOT NULL, "description" character varying(100), "created_at" timestamp, "updated_at" timestamp, "company_id" integer NOT NULL) 
+  [1m[36m (53.4ms)[0m  [1mCREATE TABLE "receipts" ("id" serial primary key, "supplier_id" integer NOT NULL, "estimated_receipt_date" date, "receipt_type_id" integer, "warehouse_id" integer NOT NULL, "receipt_number" character varying(50) NOT NULL, "ship_date" date, "created_at" timestamp, "updated_at" timestamp, "received_at" date, "state" character varying(50) NOT NULL) [0m
+  [1m[35m (109.8ms)[0m  CREATE TABLE "shipment_contents" ("id" serial primary key, "shipment_id" integer NOT NULL, "content_id" integer, "content_type" character varying, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (119.9ms)[0m  [1mCREATE TABLE "shipments" ("id" serial primary key, "shipment_number" character varying NOT NULL, "arrival_date" date, "departure_date" date, "direction" character varying(25) NOT NULL, "dock_door_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "state" character varying(50) NOT NULL, "warehouse_id" integer NOT NULL) [0m
+  [1m[35m (76.2ms)[0m  CREATE TABLE "storage_strategies" ("id" serial primary key, "code" character varying(10) NOT NULL, "name" character varying(50) NOT NULL, "description" character varying(100), "created_at" timestamp, "updated_at" timestamp, "warehouse_id" integer NOT NULL) 
+  [1m[36m (63.2ms)[0m  [1mCREATE TABLE "storage_strategy_lines" ("id" serial primary key, "order_sequence" integer NOT NULL, "storage_zone_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "check_volume" boolean DEFAULT 'f' NOT NULL, "check_dimensions" boolean DEFAULT 'f' NOT NULL, "check_containers" boolean DEFAULT 'f' NOT NULL, "storage_strategy_id" integer NOT NULL) [0m
+  [1m[35m (64.8ms)[0m  CREATE TABLE "storage_strategy_rules" ("id" serial primary key, "warehouse_id" integer NOT NULL, "order_sequence_number" integer NOT NULL, "product_category_id" integer, "product_subcategory_id" integer, "uom_id" integer, "supplier_id" integer, "product_status_id" integer, "container_type_id" integer, "storage_strategy_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "purchase_order_type_id" integer, "receipt_type_id" integer) 
+  [1m[36m (109.3ms)[0m  [1mCREATE TABLE "storage_zones" ("id" serial primary key, "code" character varying(5) NOT NULL, "name" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp, "warehouse_id" integer) [0m
+  [1m[35m (109.2ms)[0m  CREATE TABLE "suppliers" ("id" serial primary key, "name" character varying(100) NOT NULL, "address_1" character varying, "address_2" character varying, "city" character varying, "postal_code" character varying, "country_id" integer, "state" character varying, "telephone" character varying(20) NOT NULL, "email" character varying(100) NOT NULL, "description" character varying, "created_at" timestamp, "updated_at" timestamp, "company_id" integer, "website" character varying(100)) 
+  [1m[36m (65.1ms)[0m  [1mCREATE TABLE "system_parameters" ("id" serial primary key, "code" character varying(3) NOT NULL, "name" character varying(50) NOT NULL, "description" character varying(100), "created_at" timestamp, "updated_at" timestamp, "warehouse_id" integer, "value" boolean) [0m
+  [1m[35m (65.2ms)[0m  CREATE TABLE "uoms" ("id" serial primary key, "code" character varying(5) NOT NULL, "description" character varying(50), "name" character varying(25) NOT NULL, "type" character varying(25), "discrete" boolean DEFAULT 'f', "created_at" timestamp, "updated_at" timestamp, "company_id" integer) 
+  [1m[36m (131.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "username" character varying NOT NULL, "password_digest" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp, "dob" date NOT NULL, "email" character varying(50) NOT NULL, "position" character varying(50), "warehouse_id" integer, "sex" character varying(10) NOT NULL) [0m
+  [1m[35m (109.2ms)[0m  CREATE TABLE "warehouses" ("id" serial primary key, "name" character varying(100) NOT NULL, "description" character varying NOT NULL, "address_1" character varying NOT NULL, "address_2" character varying, "city" character varying NOT NULL, "postal_code" character varying, "country_id" integer NOT NULL, "code" character varying NOT NULL, "company_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "state" character varying(25)) 
+  [1m[36m (75.7ms)[0m  [1mCREATE TABLE "waves" ("id" serial primary key, "wave_number" character varying(25) NOT NULL, "started_running_at" timestamp, "stopped_running_at" timestamp, "state" character varying(25) NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp, "warehouse_id" integer NOT NULL) [0m
+  [1m[35m (66.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (63.2ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110906202829')[0m
+  [1m[35m (10.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100406201755')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110410051047')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100710025436')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100419134152')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110216220313')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100407033258')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100406143918')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110701161936')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100513032343')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100619212940')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110424174657')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110424175120')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100324161027')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101122024411')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100402170327')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100407190518')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100912041458')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101126132135')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100408160303')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100417175428')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100512174940')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100520160622')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100403141836')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100512124530')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100419041905')
+  [1m[36m (10.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100406045858')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101127234559')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100726023914')[0m
+  [1m[35m (10.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110214034117')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100606185704')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100417183624')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110225054158')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101127230149')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100327024505')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100602045504')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100417221419')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100701154920')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100412143245')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100708042421')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100402140616')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100519015814')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100406181355')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100710034858')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100531154803')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100406143151')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100326220538')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100701155103')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100707043152')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100406061303')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100702202955')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100326221020')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100726000303')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100409022136')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100710041557')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100724011705')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100402141715')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100624043459')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100402170047')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100408143526')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100326215017')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100416005632')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100619232306')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110813043915')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110310215243')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100417183134')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110310215302')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100624042958')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101126035453')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101129135200')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100613010551')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100413051714')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100606183049')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100417213124')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100705182122')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110404024618')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100520150258')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100405113954')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100416033517')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100522190245')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100609035729')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100521022910')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100406061424')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100417172941')
+  [1m[36m (10.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100823034351')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110311231506')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100323231443')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100409032442')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100408143652')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100408143152')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101127053835')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110426041945')
+  [1m[36m (10.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100409162255')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100605141221')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110117035520')[0m
+  [1m[35m (10.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100409014613')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101122034804')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100912012716')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100418050838')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100823030057')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100409023416')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110216220432')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110219225035')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110718024033')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110424200212')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100523214610')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100407191038')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100414053046')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100629224914')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100519022130')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100619233148')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110424205604')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110214042143')[0m
+  [1m[35m (66.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101127225819')
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100609042443')[0m
+  [1m[35m (44.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100406011329')
+  [1m[36m (44.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100911190057')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100407041159')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100824024011')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20110213172245')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100407033742')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100407190101')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100424041712')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100630034521')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100519025050')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100721031405')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100417181337')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100417213849')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100512134112')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100416001617')
+  [1m[36m (9.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100407032651')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100527211100')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100828032552')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100710032807')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110426042011')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100603051717')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20110226051154')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100520161811')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100701175108')[0m
+  [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20101215191934')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100326160152')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100521025449')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100402140829')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100414053244')
+  [1m[36m (10.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100411035958')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100701053842')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20100511052516')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20100916035821')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20101126034956')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m

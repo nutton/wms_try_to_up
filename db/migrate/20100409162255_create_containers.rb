@@ -8,7 +8,7 @@ class CreateContainers < ActiveRecord::Migration
       t.decimal :width, :precision => 8, :scale => 2
       t.decimal :height, :precision => 8, :scale => 2
       t.decimal :max_weight, :precision => 8, :scale => 2
-
+      t.integer :asn_id, :integer
       t.timestamps
     end
   end

@@ -8,15 +8,16 @@ gem 'resque'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mongrel', '>= 1.2.0.pre2'
-
+gem 'sqlite3'
 gem 'pg'
 gem 'aasm'
 gem 'jquery-rails'
-gem 'prototype-rails'
+#gem 'prototype-rails'
 #plugins 
 gem 'acts_as_tree'
 #gem 'acts_as_state_machine' 
 
+gem 'prototype-rails', github: 'rails/prototype-rails', branch: '4.2'
 # Use unicorn as the web server
 gem 'unicorn'
 gem 'bcrypt-ruby', '~> 3.0.0'

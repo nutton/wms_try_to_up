@@ -3,7 +3,7 @@ class SetupController < ApplicationController
 	skip_before_filter :authorize
 
 	def index
-		@countries = Country.all(:order => 'iso_code')
+		@countries = Country.all
 	end
 
 	def create_company

@@ -19,21 +19,21 @@ class ReceiptLine < ActiveRecord::Base
   belongs_to    :dock_door
   belongs_to	  :purchase_order_line
 
-  aasm_column :state
-  aasm_initial_state  :created
-  aasm_state  :created
-  aasm_state  :received
-  aasm_state  :canceled
+aasm :column => :state, :enum => true do
+  initial_state  :created
+  state  :created
+  state  :received
+  state  :canceled
 
 
-  aasm_event :start_receiving do
+  event :start_receiving do
     transitions :to => :received, :from => [:created]
   end
 
-  aasm_event :cancel do
+  event :cancel do
     transitions :to => :canceled, :from => [:created]
   end
-
+end
 
   def determine_lot
     if self.lot.nil?

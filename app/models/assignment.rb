@@ -6,30 +6,29 @@ class Assignment < ActiveRecord::Base
 	validates 	:type, presence: true
 	
 	include AASM
+  aasm :column => :state, :enum => true do 
+    state          :created
+    initial_state  :created
+    state          :released
+    state          :in_process
+    state          :completed
+    state          :canceled
   
-  aasm_column         :state
-  aasm_state          :created
-  aasm_initial_state  :created
-  aasm_state          :released
-  aasm_state          :in_process
-  aasm_state          :completed
-  aasm_state          :canceled
   
+    event :release do
+      transitions :to => :released, :from => [:created]
+    end
   
-  aasm_event :release do
-    transitions :to => :released, :from => [:created]
+    event :start_processing do
+      transitions :to => :in_process, :from => [:created, :released] 
+    end
+  
+    event :cancel do
+      transitions :to => :canceled, :from => [:created, :released]
+    end
+  
+    event :complete do
+      transitions :to => :completed, :from => [:created, :released, :in_process]
+    end
   end
-  
-  aasm_event :start_processing do
-    transitions :to => :in_process, :from => [:created, :released] 
-  end
-  
-  aasm_event :cancel do
-    transitions :to => :canceled, :from => [:created, :released]
-  end
-  
-  aasm_event :complete do
-    transitions :to => :completed, :from => [:created, :released, :in_process]
-  end
-  
 end

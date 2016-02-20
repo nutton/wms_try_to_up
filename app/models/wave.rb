@@ -2,13 +2,13 @@ class Wave < ActiveRecord::Base
 
   include AASM
   
-  aasm_column :state
-  aasm_initial_state :created
-  aasm_state  :created
-  aasm_state  :allocating
-  aasm_state  :containerizing
-  aasm_state  :completed
-  
+  aasm :column => :state, :enum => true  do
+  initial_state :created
+  state  :created
+  state  :allocating
+  state  :containerizing
+  state  :completed
+  end
   belongs_to  :warehouse
   has_many    :order_lines
 

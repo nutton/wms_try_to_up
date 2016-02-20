@@ -2,16 +2,16 @@ class Container < ActiveRecord::Base
 
   include AASM
   
-  aasm_column :state
-  aasm_initial_state :created
-  aasm_state  :created
-  aasm_state :allocated
-  aasm_state :picked
-  aasm_state :staged
-  aasm_state :loaded
-  aasm_state :shipped  
-  aasm_state :closed
-
+  aasm :column => :state, :enum => true do
+    initial_state :created
+    state  :created
+    state :allocated
+    state :picked
+    state :staged
+    state :loaded
+    state :shipped  
+    state :closed
+  end
 
   belongs_to	:container_location,  polymorphic: true
   belongs_to 	:container_type

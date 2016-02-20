@@ -2,26 +2,26 @@ class PurchaseOrderLine < ActiveRecord::Base
 
   include AASM
   
-  aasm_column :state
+  aasm :column => :state, :enum => true do
 
-  aasm_initial_state :created
-  aasm_state :canceled
-  aasm_state :created
-  aasm_state :in_receiving
-  aasm_state :completed
+  initial_state :created
+  state :canceled
+  state :created
+  state :in_receiving
+  state :completed
 
-  aasm_event :start_receiving do
+  event :start_receiving do
     transitions :to => :in_receiving, :from => [:created]
   end
 
-  aasm_event :complete_receiving do
+  event :complete_receiving do
     transitions :to => :completed, :from => [:created,:in_receiving]
   end
 
-  aasm_event :cancel do
+  event :cancel do
     transitions :to => :canceled, :from => [:created]
   end
-
+  end
 
   validates 	:line_number, :purchase_order_id, :product_id, :quantity, presence: true
   validates 	:quantity, :numericality => {:greater_than_or_equal_to => 1}

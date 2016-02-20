@@ -24,21 +24,21 @@ class Inbound::ReceivingAssignmentController < ApplicationController
     end
     
     def lp_valid?(lp)
-      lp_valid? = true
-      @receipt_lines = ReceiptLine.where(:lp => lp)
-      unless @receipt_lines.empty?
-        @receipt_lines.each do |receipt_line|
-          if !(receipt_line.created?)
-            lp_valid? = false
-            break
+      if lp_valid?
+        @receipt_lines = ReceiptLine.where(:lp => lp)
+        unless @receipt_lines.empty?
+          @receipt_lines.each do |receipt_line|
+            if !(receipt_line.created?)
+              lp_valid = false
+              break
+            end
           end
+        else
+          lp_valid = false
         end
-      else
-        lp_valid? = false
+        lp_valid
       end
-      lp_valid
     end
-    
     def same_lp?(receipt_lines)
       lp = receipt_lines.first.lp
       same_lp = true
@@ -51,7 +51,8 @@ class Inbound::ReceivingAssignmentController < ApplicationController
     end
     
     def single_dock_door?(receipt_lines)
-      dock_door = 
+#      dock_door = 
+      true
     end
 
 end

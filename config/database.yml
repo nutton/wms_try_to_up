@@ -40,9 +40,5 @@ test:
   database: wat_dev
 
 production:
-  adapter: postgresql
-  encoding: latin9
-  database: wms_production
-  pool: 5
-  username: postgres
-  password: postgres
+  <<: *development
+  database: zip-zip-zip

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=4.0.0'
+gem 'rails'
 gem 'resque'
 #gem 'redis'
 #gem 'redis-namespace'

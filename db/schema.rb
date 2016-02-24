@@ -145,11 +145,10 @@ ActiveRecord::Schema.define(version: 20110906202829) do
     t.decimal  "width",                              precision: 8, scale: 2
     t.decimal  "height",                             precision: 8, scale: 2
     t.decimal  "max_weight",                         precision: 8, scale: 2
+    t.integer  "asn_id"
+    t.integer  "integer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "receipt_id"
-    t.integer  "parent_container_id"
-    t.string   "state",                   limit: 50,                         null: false
   end
 
   create_table "countries", force: :cascade do |t|
@@ -324,6 +323,7 @@ ActiveRecord::Schema.define(version: 20110906202829) do
   end
 
   create_table "product_packages", force: :cascade do |t|
+    t.string   "product_id",                                             null: false
     t.boolean  "logical_each"
     t.boolean  "logical_case"
     t.boolean  "logical_pallet"
@@ -334,7 +334,6 @@ ActiveRecord::Schema.define(version: 20110906202829) do
     t.boolean  "active",                                 default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "product_id"
     t.integer  "uom_id",                                                 null: false
     t.decimal  "weight",         precision: 8, scale: 2
   end

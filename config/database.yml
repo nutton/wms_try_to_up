@@ -12,7 +12,7 @@ development: &development
   adapter: postgresql
   host: 127.0.0.1
   encoding: unicode
-  database: dbwms
+  database: dbwms_devel
   pool: 5
   username: wat
   password: welcome
@@ -37,8 +37,8 @@ development: &development
 # Do not set this db to the same as development or production.
 test:
   <<: *development
-  database: wat_dev
+  database: dbwms_testing
 
 production:
   <<: *development
-  database: zip-zip-zip
+  database: dbwms

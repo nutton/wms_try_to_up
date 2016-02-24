@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'acts_as_tree'
 #gem 'acts_as_state_machine' 
 
-gem 'prototype-rails', github: 'rails/prototype-rails', branch: '4.2'
+gem 'prototype-rails', git: 'https://github.com/rails/prototype-rails', branch: '4.2'
 # Use unicorn as the web server
 gem 'unicorn'
 gem 'bcrypt-ruby', '~> 3.0.0'

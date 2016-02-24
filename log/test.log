@@ -316,3 +316,2072 @@ Migrating to RenameAsnToReceipt (20100406181355)
   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (144.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (35.9ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCompanies (20100323231443)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (115.0ms)[0m  [1mCREATE TABLE "companies" ("id" serial primary key, "name" character varying(50) NOT NULL, "address_1" character varying NOT NULL, "address_2" character varying, "city" character varying(100), "postal_code" character varying, "country_id" integer NOT NULL, "iso_country_code" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100323231443"]]
+  [1m[36m (10.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateWarehouses (20100324161027)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (58.8ms)[0m  [1mCREATE TABLE "warehouses" ("id" serial primary key, "name" character varying(100) NOT NULL, "description" character varying NOT NULL, "address_1" character varying NOT NULL, "addresss_2" character varying, "city" character varying NOT NULL, "postal_code" character varying, "country_id" integer NOT NULL, "code" character varying NOT NULL, "company_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100324161027"]]
+  [1m[36m (11.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSystemParameters (20100326160152)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (33.6ms)[0m  [1mCREATE TABLE "system_parameters" ("id" serial primary key, "code" character varying(3) NOT NULL, "name" character varying(50) NOT NULL, "description" character varying(100), "value" character varying(10) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326160152"]]
+  [1m[36m (11.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLocations (20100326215017)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (75.5ms)[0m  [1mCREATE TABLE "locations" ("id" serial primary key, "warehouse_id" integer NOT NULL, "zone" character varying(4) NOT NULL, "aisle" character varying(4) NOT NULL, "bay" character varying(4) NOT NULL, "level" character varying(4) NOT NULL, "position" character varying(4) NOT NULL, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "location" character varying NOT NULL, "pick_travel_sequence" integer, "storage_travel_sequence" integer, "storage_zone_id" integer, "fixed_pick_location_flag" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326215017"]]
+  [1m[36m (19.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20100326220538)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (68.7ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying NOT NULL, "last_name" character varying NOT NULL, "username" character varying NOT NULL, "hashed_password" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326220538"]]
+  [1m[36m (10.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateStorageZones (20100326221020)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (77.7ms)[0m  [1mCREATE TABLE "storage_zones" ("id" serial primary key, "code" character varying(5) NOT NULL, "name" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100326221020"]]
+  [1m[36m (9.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAllocationZones (20100327024505)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (69.8ms)[0m  [1mCREATE TABLE "allocation_zones" ("id" serial primary key, "code" character varying NOT NULL, "name" character varying NOT NULL, "description" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100327024505"]]
+  [1m[36m (17.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductCategories (20100402140616)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (45.4ms)[0m  [1mCREATE TABLE "product_categories" ("id" serial primary key, "name" character varying(25) NOT NULL, "description" character varying(100) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402140616"]]
+  [1m[36m (8.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductSubcategories (20100402140829)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (38.3ms)[0m  [1mCREATE TABLE "product_subcategories" ("id" serial primary key, "product_category_id" integer NOT NULL, "name" character varying(25) NOT NULL, "description" character varying(100) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402140829"]]
+  [1m[36m (7.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCountries (20100402141715)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (56.5ms)[0m  [1mCREATE TABLE "countries" ("id" serial primary key, "name" character varying NOT NULL, "iso_code" character varying(3), "code" character varying(3) NOT NULL, "language" character varying(25), "telephone_country_code" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402141715"]]
+  [1m[36m (6.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProducts (20100402170047)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (64.8ms)[0m  [1mCREATE TABLE "products" ("id" serial primary key, "company_id" integer NOT NULL, "name" character varying(100) NOT NULL, "description" character varying(200), "supplier_id" integer, "gtin_number" character varying, "upc_number" character varying, "image_filename" character varying(100), "default_allocation_strategy_id" integer, "default_putaway_strategy_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402170047"]]
+  [1m[36m (14.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSuppliers (20100402170327)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (56.8ms)[0m  [1mCREATE TABLE "suppliers" ("id" serial primary key, "name" character varying(100) NOT NULL, "address_1" character varying, "address_2" character varying, "city" character varying, "postal_code" character varying, "country_id" integer, "state" character varying, "telephone" character varying(20) NOT NULL, "email" character varying(100) NOT NULL, "description" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100402170327"]]
+  [1m[36m (13.5ms)[0m  [1mCOMMIT[0m
+Migrating to LocationAddAlias (20100403141836)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "locations" ADD "alias" character varying(100)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100403141836"]]
+  [1m[36m (3.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddSkuBarcode (20100405113954)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "products" ADD "barcode" character varying(100)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "alias" character varying(100)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100405113954"]]
+  [1m[35m (3.6ms)[0m  COMMIT
+Migrating to AddCompanyLogo (20100406011329)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "companies" ADD "logo_filename" character varying(100)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100406011329"]]
+  [1m[35m (4.5ms)[0m  COMMIT
+Migrating to AddProductCategory (20100406045858)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "category_type" character varying
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "products" ADD "category_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406045858"]]
+  [1m[36m (4.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDockDoors (20100406061303)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (24.9ms)[0m  [1mCREATE TABLE "dock_doors" ("id" serial primary key, "name" character varying(10) NOT NULL, "direction" character varying(1) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406061303"]]
+  [1m[36m (13.5ms)[0m  [1mCOMMIT[0m
+Migrating to LocationFields (20100406061424)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (24.0ms)[0m  [1mALTER TABLE "locations" DROP "fixed_pick_location_flag"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "locations" ADD "type" character varying(10) NOT NULL
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" ADD "max_staging_units" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406061424"]]
+  [1m[36m (12.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCustomers (20100406143151)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (57.4ms)[0m  [1mCREATE TABLE "customers" ("id" serial primary key, "company_id" integer NOT NULL, "name" character varying(100) NOT NULL, "address_1" character varying(100), "address_2" character varying(100), "city" character varying(50), "postal_code" character varying(10), "state" character varying(50), "country_id" integer, "telephone" character varying(20), "email" character varying(50), "code" character varying(5), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406143151"]]
+  [1m[36m (12.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePurchaseOrders (20100406143918)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (58.2ms)[0m  [1mCREATE TABLE "purchase_orders" ("id" serial primary key, "supplier_id" integer, "ship_date" date, "company_id" integer, "purchase_order_number" character varying, "purchase_order_type_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406143918"]]
+  [1m[36m (12.1ms)[0m  [1mCOMMIT[0m
+Migrating to RenameAsnToReceipt (20100406181355)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "containers" RENAME COLUMN "asn_id" TO "receipt_id"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameAsnToReceipt (20100406181355)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "containers" RENAME COLUMN "asn_id" TO "receipt_id"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameAsnToReceipt (20100406181355)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "containers" RENAME COLUMN "asn_id" TO "receipt_id"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (86.0ms)[0m  [1mCREATE TABLE "containers" ("id" serial primary key, "lp" character varying(50) NOT NULL, "container_location_id" integer NOT NULL, "container_location_type" character varying NOT NULL, "container_type_id" integer, "length" decimal(8,2), "width" decimal(8,2), "height" decimal(8,2), "max_weight" decimal(8,2), "asn_id" integer, "integer" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameAsnToReceipt (20100406181355)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "containers" RENAME COLUMN "asn_id" TO "receipt_id"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406181355"]]
+  [1m[36m (20.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateReceipts (20100406201755)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (32.4ms)[0m  [1mCREATE TABLE "receipts" ("id" serial primary key, "supplier_id" integer NOT NULL, "estimated_receipt_date" date, "real_receipt_date" date NOT NULL, "receipt_type_id" integer, "company_id" integer NOT NULL, "receipt_number" character varying(50) NOT NULL, "ship_date" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406201755"]]
+  [1m[36m (15.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUoms (20100407032651)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (47.3ms)[0m  [1mCREATE TABLE "uoms" ("id" serial primary key, "code" character varying(5) NOT NULL, "description" character varying(50), "name" character varying(25) NOT NULL, "measurement_type" character varying(25), "continuous" boolean DEFAULT 'f', "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100407032651"]]
+  [1m[36m (6.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductPackages (20100407033258)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (65.0ms)[0m  [1mCREATE TABLE "product_packages" ("id" serial primary key, "product_id" character varying NOT NULL, "logical_each" boolean, "logical_case" boolean, "logical_pallet" boolean, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "quantity" integer NOT NULL, "active" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100407033258"]]
+  [1m[36m (14.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddDefaultCompanyDimensionCols (20100407033742)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "companies" ADD "default_quantity_uom_id" integer[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "companies" ADD "default_length_uom_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "companies" ADD "default_weight_uom_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100407033742"]]
+  [1m[36m (10.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePurchaseOrderLines (20100407041159)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (78.4ms)[0m  [1mCREATE TABLE "purchase_order_lines" ("id" serial primary key, "line_number" integer, "purchase_order_id" integer NOT NULL, "product_id" integer NOT NULL, "quantity_uom" decimal NOT NULL, "uom_id" integer, "comments" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100407041159"]]
+  [1m[36m (17.1ms)[0m  [1mCOMMIT[0m
+Migrating to LocMixSku (20100407190101)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (74.7ms)[0m  [1mALTER TABLE "locations" ADD "mix_sku" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100407190101"]]
+  [1m[36m (13.0ms)[0m  [1mCOMMIT[0m
+Migrating to LocAddActive (20100407190518)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (57.4ms)[0m  [1mALTER TABLE "locations" ADD "active" boolean DEFAULT 't' NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100407190518"]]
+  [1m[36m (12.7ms)[0m  [1mCOMMIT[0m
+Migrating to LocationContainerFields (20100407191038)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (67.8ms)[0m  [1mALTER TABLE "locations" ADD "collapse_containers" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "locations" ADD "maximum_containers" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100407191038"]]
+  [1m[35m (9.8ms)[0m  COMMIT
+Migrating to CreateProductStatuses (20100408143152)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (33.7ms)[0m  CREATE TABLE "product_statuses" ("id" serial primary key, "code" character varying(5) NOT NULL, "description" character varying(50) NOT NULL, "allocatable" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100408143152"]]
+  [1m[35m (10.2ms)[0m  COMMIT
+Migrating to CreateLots (20100408143526)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (26.8ms)[0m  CREATE TABLE "lots" ("id" serial primary key, "product_id" integer NOT NULL, "fifo_date" date NOT NULL, "product_status_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100408143526"]]
+  [1m[35m (10.1ms)[0m  COMMIT
+Migrating to LotProductStatusItem (20100408143652)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "products" ADD "product_status_id" integer NOT NULL
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "products" ADD "lot_management_type" character varying(25) NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100408143652"]]
+  [1m[36m (10.6ms)[0m  [1mCOMMIT[0m
+Migrating to StorageAllocationAvailableLoc (20100408160303)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (70.0ms)[0m  [1mALTER TABLE "locations" ADD "available_for_storage" boolean DEFAULT 't' NOT NULL[0m
+  [1m[35m (58.3ms)[0m  ALTER TABLE "locations" ADD "available_for_allocation" boolean DEFAULT 't' NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100408160303"]]
+  [1m[35m (9.0ms)[0m  COMMIT
+Migrating to CreateReceiptLines (20100409014613)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (68.8ms)[0m  CREATE TABLE "receipt_lines" ("id" serial primary key, "receipt_id" integer NOT NULL, "lp" character varying(50) NOT NULL, "product_id" integer NOT NULL, "product_package_id" integer NOT NULL, "lot_id" integer NOT NULL, "product_status_id" integer, "quantity" decimal NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100409014613"]]
+  [1m[35m (7.8ms)[0m  COMMIT
+Migrating to AddPurchaseOrderReceipt (20100409022136)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "receipts" ADD "purchase_order_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100409022136"]]
+  [1m[35m (10.6ms)[0m  COMMIT
+Migrating to CreateContainerTypes (20100409023416)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (37.7ms)[0m  CREATE TABLE "container_types" ("id" serial primary key, "length" decimal(8,2) NOT NULL, "width" decimal(8,2) NOT NULL, "height" decimal(8,2) NOT NULL, "maximum_weight" decimal(8,2) NOT NULL, "purpose" character varying(10), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100409023416"]]
+  [1m[35m (7.9ms)[0m  COMMIT
+Migrating to CreateContainerContents (20100409032442)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (29.4ms)[0m  CREATE TABLE "container_contents" ("id" serial primary key, "container_id" integer NOT NULL, "product_id" integer NOT NULL, "lot_id" integer NOT NULL, "product_status" integer, "quantity" decimal(8,2) NOT NULL, "receipt_line_id" integer, "order_line_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100409032442"]]
+  [1m[35m (16.2ms)[0m  COMMIT
+Migrating to CreateContainers (20100409162255)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "containers" ("id" serial primary key, "lp" character varying(50) NOT NULL, "container_location_id" integer NOT NULL, "container_location_type" character varying NOT NULL, "container_type_id" integer, "length" decimal(8,2), "width" decimal(8,2), "height" decimal(8,2), "max_weight" decimal(8,2), "asn_id" integer, "integer" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateContainers (20100406181330)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.1ms)[0m  [1mCREATE TABLE "containers" ("id" serial primary key, "lp" character varying(50) NOT NULL, "container_location_id" integer NOT NULL, "container_location_type" character varying NOT NULL, "container_type_id" integer, "length" decimal(8,2), "width" decimal(8,2), "height" decimal(8,2), "max_weight" decimal(8,2), "asn_id" integer, "integer" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrders (20100411035958)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (65.6ms)[0m  [1mCREATE TABLE "orders" ("id" serial primary key, "order_number" character varying, "ship_date" date, "customer_id" integer, "received_date" date, "order_priority" integer, "order_type_id" integer, "ship_addres_1" character varying, "ship_address_2" character varying, "ship_city" character varying, "ship_postal_code" character varying, "ship_state" character varying, "ship_country_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100411035958"]]
+  [1m[36m (11.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOrderLines (20100412143245)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (35.8ms)[0m  [1mCREATE TABLE "order_lines" ("id" serial primary key, "line_sequence_number" integer NOT NULL, "product_id" integer NOT NULL, "lot_id" integer, "product_status_id" integer, "product_package_id" integer, "quantity_ordered" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100412143245"]]
+  [1m[36m (9.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserFields (20100413051714)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "dob" date NOT NULL[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "email" character varying(50) NOT NULL
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "position" character varying(50)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100413051714"]]
+  [1m[36m (10.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddCompanyOrder (20100414053046)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "orders" ADD "company_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100414053046"]]
+  [1m[36m (3.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddWarehouseId (20100414053244)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "allocation_zones" ADD "warehouse_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "storage_zones" ADD "warehouse_id" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "dock_doors" ADD "warehouse_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "product_categories" ADD "company_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "product_subcategories" ADD "company_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "suppliers" ADD "company_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "system_parameters" ADD "warehouse_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "warehouse_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "uoms" ADD "company_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100414053244"]]
+  [1m[36m (11.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOrderTypes (20100416001617)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (28.2ms)[0m  [1mCREATE TABLE "order_types" ("id" serial primary key, "order_type" character varying(25) NOT NULL, "description" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100416001617"]]
+  [1m[36m (10.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateShipments (20100416005632)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (62.0ms)[0m  [1mCREATE TABLE "shipments" ("id" serial primary key, "trailer_number" character varying NOT NULL, "arrival_date" date, "departure_date" date, "direction" character varying(25) NOT NULL, "dock_door_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100416005632"]]
+  [1m[36m (17.2ms)[0m  [1mCOMMIT[0m
+Migrating to ParentContainerId (20100416033517)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "containers" ADD "parent_container_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100416033517"]]
+  [1m[36m (3.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateStorageStrategies (20100417172941)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (29.2ms)[0m  [1mCREATE TABLE "storage_strategies" ("id" serial primary key, "code" character varying(10) NOT NULL, "name" character varying(50) NOT NULL, "description" character varying(100), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417172941"]]
+  [1m[36m (16.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateStorageStrategyLines (20100417175428)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (22.3ms)[0m  [1mCREATE TABLE "storage_strategy_lines" ("id" serial primary key, "order_sequence_number" integer NOT NULL, "storage_zone_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417175428"]]
+  [1m[36m (6.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddStorageStraegyIdReceiptLine (20100417181337)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "receipt_lines" ADD "strorage_strategy_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417181337"]]
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAssignmentTypes (20100417183134)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (23.1ms)[0m  [1mCREATE TABLE "assignment_types" ("id" serial primary key, "code" character varying(5) NOT NULL, "name" character varying(25) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417183134"]]
+  [1m[36m (6.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAssignments (20100417183624)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (31.3ms)[0m  [1mCREATE TABLE "assignments" ("id" serial primary key, "assignment_type_id" integer NOT NULL, "user_id" integer, "start_timestamp" date, "finish_timestamp" date, "released_flag" boolean DEFAULT 't' NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417183624"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+Migrating to CleanupProductCategorization (20100417213124)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "products" DROP "category_type"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" DROP "category_id"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "products" ADD "product_category_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "product_subcategory_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100417213124"]]
+  [1m[35m (2.7ms)[0m  COMMIT
+Migrating to RenameStrategies (20100417213849)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "products" RENAME COLUMN "default_putaway_strategy_id" TO "storage_strategy_id"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "products" RENAME COLUMN "default_allocation_strategy_id" TO "allocation_strategy_id"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417213849"]]
+  [1m[36m (9.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAssignmentDetails (20100417221419)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (31.7ms)[0m  [1mCREATE TABLE "assignment_details" ("id" serial primary key, "assignment_id" integer NOT NULL, "expected_product_id" integer, "actual_product_id" integer, "expected_quantity" integer, "actual_quantity" integer, "from_location_id" integer, "to_location_id" integer, "from_container_id" integer, "to_container_id" integer, "start_time" date, "finish_time" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100417221419"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+Migrating to RenameContinuous (20100418050838)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "uoms" RENAME COLUMN "continuous" TO "discrete"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100418050838"]]
+  [1m[36m (3.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateStorageStrategyRules (20100419041905)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (24.0ms)[0m  [1mCREATE TABLE "storage_strategy_rules" ("id" serial primary key, "warehouse_id" integer NOT NULL, "order_sequence_number" integer NOT NULL, "product_category_id" integer, "product_subcategory_id" integer, "uom_id" integer, "supplier_id" integer, "product_status_id" integer, "container_type_id" integer, "storage_strategy_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100419041905"]]
+  [1m[36m (6.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddStorageStrategyLineChecks (20100419134152)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (49.9ms)[0m  [1mALTER TABLE "storage_strategy_lines" ADD "check_volume" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35m (41.5ms)[0m  ALTER TABLE "storage_strategy_lines" ADD "check_dimensions" boolean DEFAULT 'f' NOT NULL
+  [1m[36m (41.5ms)[0m  [1mALTER TABLE "storage_strategy_lines" ADD "check_containers" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100419134152"]]
+  [1m[36m (12.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddCompanyAssignmentType (20100424041712)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "assignment_types" ADD "company_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100424041712"]]
+  [1m[36m (10.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserAssignment (20100511052516)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "assignment_details" ADD "user_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100511052516"]]
+  [1m[36m (2.9ms)[0m  [1mCOMMIT[0m
+Migrating to FixAddresss2 (20100512124530)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "warehouses" RENAME COLUMN "addresss_2" TO "address_2"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100512124530"]]
+  [1m[36m (3.4ms)[0m  [1mCOMMIT[0m
+Migrating to UserSex (20100512134112)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "sex" character varying(10) NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100512134112"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+Migrating to UserFirstName (20100512174940)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" RENAME COLUMN "name" TO "first_name"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100512174940"]]
+  [1m[36m (3.6ms)[0m  [1mCOMMIT[0m
+Migrating to SysparmBooleanValue (20100513032343)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "system_parameters" DROP "value"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "system_parameters" ADD "value" boolean
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100513032343"]]
+  [1m[35m (4.0ms)[0m  COMMIT
+Migrating to CreateAllocationStrategies (20100519015814)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (34.0ms)[0m  CREATE TABLE "allocation_strategies" ("id" serial primary key, "name" character varying(25) NOT NULL, "code" character varying(5) NOT NULL, "description" character varying(50), "warehouse_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100519015814"]]
+  [1m[35m (11.9ms)[0m  COMMIT
+Migrating to CreateAllocationStrategyLines (20100519022130)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (33.6ms)[0m  CREATE TABLE "allocation_strategy_lines" ("id" serial primary key, "order_sequence" integer NOT NULL, "allocation_zone_id" integer NOT NULL, "containerization_method" character varying(25) NOT NULL, "minimum_pick_uom" character varying(25) NOT NULL, "containerization_level" character varying(25) NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100519022130"]]
+  [1m[35m (11.8ms)[0m  COMMIT
+Migrating to CreateAllocationStrategyRules (20100519025050)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (33.9ms)[0m  CREATE TABLE "allocation_strategy_rules" ("id" serial primary key, "warehouse_id" integer NOT NULL, "order_sequence" integer NOT NULL, "order_type_id" integer, "product_category_id" integer, "product_subcategory_id" integer, "allocation_strategy_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100519025050"]]
+  [1m[35m (11.2ms)[0m  COMMIT
+Migrating to CreateCustomerTypes (20100520150258)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (26.2ms)[0m  CREATE TABLE "customer_types" ("id" serial primary key, "company_id" integer NOT NULL, "code" character varying(5) NOT NULL, "description" character varying(25), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100520150258"]]
+  [1m[35m (11.1ms)[0m  COMMIT
+Migrating to AddWarehouseStorageStrategy (20100520160622)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "storage_strategies" ADD "warehouse_id" integer NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100520160622"]]
+  [1m[35m (3.3ms)[0m  COMMIT
+Migrating to RemoveProductWarehouseAttributes (20100520161811)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" DROP "lot_management_type"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "products" DROP "product_status_id"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "products" DROP "allocation_strategy_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "products" DROP "storage_strategy_id"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100520161811"]]
+  [1m[36m (4.0ms)[0m  [1mCOMMIT[0m
+Migrating to ChangeProductPackageProdIdDatatype (20100521022910)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "product_packages" ALTER COLUMN "product_id" TYPE integer[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeProductPackageProdIdDatatype (20100521022910)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "product_packages" ALTER COLUMN "product_id" TYPE integer[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddUomIdProductPackage (20100521025449)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "product_packages" ADD "uom_id" integer NOT NULL[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100521025449"]]
+  [1m[36m (7.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductWarehouseSetups (20100522190245)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (25.6ms)[0m  [1mCREATE TABLE "product_warehouse_setups" ("id" serial primary key, "product_id" integer NOT NULL, "warehouse_id" integer NOT NULL, "product_status_id" integer NOT NULL, "lot_management_type" character varying(10) NOT NULL, "allocation_strategy_id" integer, "storage_strategy_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100522190245"]]
+  [1m[36m (10.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddCompanyIdProdStat (20100523214610)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "product_statuses" ADD "company_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100523214610"]]
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+Migrating to ChangeMixSku (20100527211100)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" RENAME COLUMN "mix_sku" TO "mix_products"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100527211100"]]
+  [1m[36m (18.6ms)[0m  [1mCOMMIT[0m
+Migrating to LocationAddAllocationZoneId (20100531154803)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" ADD "allocation_zone_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100531154803"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+Migrating to RenameLocationType (20100602045504)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" RENAME COLUMN "type" TO "location_type"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100602045504"]]
+  [1m[36m (3.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLocationTypes (20100603051717)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (27.8ms)[0m  [1mCREATE TABLE "location_types" ("id" serial primary key, "location_type" character varying(25) NOT NULL, "zone" integer, "aisle" integer, "bay" integer, "level" integer, "position" integer, "warehouse_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100603051717"]]
+  [1m[36m (10.1ms)[0m  [1mCOMMIT[0m
+Migrating to WarehouseAddState (20100605141221)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "warehouses" ADD "state" character varying(25)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100605141221"]]
+  [1m[36m (3.1ms)[0m  [1mCOMMIT[0m
+Migrating to LocaationTypeAttributes (20100606183049)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" ADD "length" decimal(8,2) NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" ADD "width" decimal(8,2) NOT NULL
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "location_types" ADD "height" decimal(8,2) NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" ADD "storage_zone_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "location_types" ADD "replenishable" boolean[0m
+  [1m[35m (59.0ms)[0m  ALTER TABLE "location_types" ADD "mix_products" boolean DEFAULT 'f' NOT NULL
+  [1m[36m (42.7ms)[0m  [1mALTER TABLE "location_types" ADD "collapse_containers" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "location_types" ADD "maximum_containers" integer
+  [1m[36m (41.0ms)[0m  [1mALTER TABLE "location_types" ADD "available_for_storage" boolean DEFAULT 't' NOT NULL[0m
+  [1m[35m (41.5ms)[0m  ALTER TABLE "location_types" ADD "available_for_allocation" boolean DEFAULT 't' NOT NULL
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" ADD "allocation_zone_id" integer[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "locations" DROP "length"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" DROP "width"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "locations" DROP "height"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" DROP "storage_zone_id"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "locations" DROP "mix_products"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" DROP "collapse_containers"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "locations" DROP "maximum_containers"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" DROP "available_for_storage"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "locations" DROP "available_for_allocation"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" DROP "allocation_zone_id"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" RENAME COLUMN "location_type" TO "location_type_id"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100606183049"]]
+  [1m[35m (15.2ms)[0m  COMMIT
+Migrating to LocationCleanup (20100606185704)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "locations" DROP "location_type_id"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" DROP "max_staging_units"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "locations" DROP "active"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" ADD "location_type_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100606185704"]]
+  [1m[36m (9.3ms)[0m  [1mCOMMIT[0m
+Migrating to LocationTypeColumns (20100609035729)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" ADD "code" character varying(10) NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" ADD "name" character varying(25) NOT NULL
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "location_types" DROP "location_type"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100609035729"]]
+  [1m[36m (10.6ms)[0m  [1mCOMMIT[0m
+Migrating to LocationTypeMaxWeight (20100609042443)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "location_types" ADD "maximum_weight" decimal(8,2)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100609042443"]]
+  [1m[36m (3.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddAllocationStrategy (20100613010551)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "location_types" ADD "allocation_strategy_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100613010551"]]
+  [1m[36m (4.7ms)[0m  [1mCOMMIT[0m
+Migrating to StorageStrategyIdLine (20100619212940)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "storage_strategy_lines" ADD "storage_strategy_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100619212940"]]
+  [1m[36m (4.6ms)[0m  [1mCOMMIT[0m
+Migrating to LocationTypesColumnDataTypes (20100619232306)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" DROP "zone"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" DROP "aisle"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "location_types" DROP "bay"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" DROP "level"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "location_types" DROP "position"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100619232306"]]
+  [1m[36m (3.2ms)[0m  [1mCOMMIT[0m
+Migrating to LocTypeComponents (20100619233148)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" ADD "zone" boolean NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" ADD "aisle" boolean NOT NULL
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "location_types" ADD "bay" boolean NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" ADD "level" boolean NOT NULL
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "location_types" ADD "position" boolean NOT NULL[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100619233148"]]
+  [1m[36m (2.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePurchaseOrderTypes (20100624042958)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (31.6ms)[0m  [1mCREATE TABLE "purchase_order_types" ("id" serial primary key, "purchase_order_type" character varying(25) NOT NULL, "description" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100624042958"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+Migrating to CompanyIdPoOrderType (20100624043459)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "order_types" ADD "company_id" integer NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "purchase_order_types" ADD "company_id" integer NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100624043459"]]
+  [1m[35m (4.0ms)[0m  COMMIT
+Migrating to AddStrategyIdStratLine (20100629224914)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "allocation_strategy_lines" ADD "allocation_strategy_id" integer NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100629224914"]]
+  [1m[35m (4.6ms)[0m  COMMIT
+Migrating to AllocStratRuleMoreFields (20100630034521)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "allocation_strategy_rules" ADD "customer_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "allocation_strategy_rules" ADD "customer_type_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100630034521"]]
+  [1m[36m (4.4ms)[0m  [1mCOMMIT[0m
+Migrating to CustomerTypeCustomer (20100701053842)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "customers" ADD "customer_type_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100701053842"]]
+  [1m[36m (4.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateReceiptTypes (20100701154920)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (32.1ms)[0m  [1mCREATE TABLE "receipt_types" ("id" serial primary key, "name" character varying(25) NOT NULL, "code" character varying(50) NOT NULL, "description" character varying(100), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100701154920"]]
+  [1m[36m (6.1ms)[0m  [1mCOMMIT[0m
+Migrating to CompanyIdReceiptTypes (20100701155103)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipt_types" ADD "company_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100701155103"]]
+  [1m[36m (5.0ms)[0m  [1mCOMMIT[0m
+Migrating to StorageStratCriteria (20100701175108)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "storage_strategy_rules" ADD "purchase_order_type_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "storage_strategy_rules" ADD "receipt_type_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100701175108"]]
+  [1m[35m (4.3ms)[0m  COMMIT
+Migrating to AddProductStatusAllocStratRule (20100702202955)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "allocation_strategy_rules" ADD "product_status_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100702202955"]]
+  [1m[35m (4.7ms)[0m  COMMIT
+Migrating to RenameStorStratLineRderSeq (20100705182122)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "storage_strategy_lines" RENAME COLUMN "order_sequence_number" TO "order_sequence"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100705182122"]]
+  [1m[35m (3.7ms)[0m  COMMIT
+Migrating to RelocateLocTypeAttributes (20100707043152)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (58.2ms)[0m  ALTER TABLE "locations" ADD "available_for_storage" boolean DEFAULT 'f' NOT NULL
+  [1m[36m (66.5ms)[0m  [1mALTER TABLE "locations" ADD "available_for_allocation" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "locations" ADD "allocation_zone_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" ADD "storage_zone_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "locations" ADD "allocation_strategy_id" integer
+  [1m[36m (64.7ms)[0m  [1mALTER TABLE "locations" ADD "mix_products" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35m (49.9ms)[0m  ALTER TABLE "locations" ADD "collapse_containers" boolean DEFAULT 'f' NOT NULL
+  [1m[36m (58.2ms)[0m  [1mALTER TABLE "locations" ADD "replenishable" boolean DEFAULT 'f' NOT NULL[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "location_types" DROP "allocation_strategy_id"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" DROP "available_for_storage"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "location_types" DROP "available_for_allocation"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "location_types" DROP "allocation_zone_id"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "location_types" DROP "storage_zone_id"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "location_types" DROP "mix_products"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "location_types" DROP "collapse_containers"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "location_types" DROP "replenishable"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100707043152"]]
+  [1m[36m (16.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProductLocationAssignments (20100708042421)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (23.7ms)[0m  [1mCREATE TABLE "product_location_assignments" ("id" serial primary key, "product_id" integer NOT NULL, "location_id" integer NOT NULL, "replenishment_at" integer NOT NULL, "maximum_quantity" integer NOT NULL, "warehouse_id" integer NOT NULL, "replenish_to" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100708042421"]]
+  [1m[36m (11.6ms)[0m  [1mCOMMIT[0m
+Migrating to Rename (20100710025436)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" RENAME COLUMN "location" TO "name"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100710025436"]]
+  [1m[36m (10.7ms)[0m  [1mCOMMIT[0m
+Migrating to ChangeNullConstraingsLocations (20100710032807)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" ALTER COLUMN "zone" TYPE character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" ALTER "zone" SET NOT NULL
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" ALTER COLUMN "aisle" TYPE character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" ALTER "aisle" SET NOT NULL
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" ALTER COLUMN "bay" TYPE character varying[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" ALTER "bay" SET NOT NULL
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "locations" ALTER COLUMN "level" TYPE character varying[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "locations" ALTER "level" SET NOT NULL
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "locations" ALTER COLUMN "position" TYPE character varying[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "locations" ALTER "position" SET NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100710032807"]]
+  [1m[35m (9.1ms)[0m  COMMIT
+Migrating to ChangeLocationAttributes (20100710034858)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "locations" ALTER COLUMN "zone" TYPE character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "locations" ALTER "zone" DROP NOT NULL[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" ALTER COLUMN "aisle" TYPE character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "locations" ALTER "aisle" DROP NOT NULL[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" ALTER COLUMN "bay" TYPE character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "locations" ALTER "bay" DROP NOT NULL[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "locations" ALTER COLUMN "level" TYPE character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "locations" ALTER "level" DROP NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "locations" ALTER COLUMN "position" TYPE character varying
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "locations" ALTER "position" DROP NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100710034858"]]
+  [1m[36m (8.9ms)[0m  [1mCOMMIT[0m
+Migrating to MoveAllocStrat (20100710041557)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "locations" DROP "allocation_strategy_id"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "product_location_assignments" ADD "allocation_strategy_id" integer NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100710041557"]]
+  [1m[35m (3.8ms)[0m  COMMIT
+Migrating to DockDoorDirectionLength (20100721031405)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "dock_doors" ALTER COLUMN "direction" TYPE character varying(25)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "dock_doors" ALTER "direction" SET NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100721031405"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+Migrating to RenameUomType (20100724011705)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "uoms" RENAME COLUMN "measurement_type" TO "type"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100724011705"]]
+  [1m[36m (3.8ms)[0m  [1mCOMMIT[0m
+Migrating to ReceiptCompanyWarehouse (20100726000303)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipts" RENAME COLUMN "company_id" TO "warehouse_id"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100726000303"]]
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+Migrating to PoLineProdPack (20100726023914)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "purchase_order_lines" RENAME COLUMN "uom_id" TO "product_package_id"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100726023914"]]
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveProductPackage (20100823030057)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "receipt_lines" DROP "product_package_id"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "order_lines" DROP "product_package_id"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "purchase_order_lines" DROP "product_package_id"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "purchase_order_lines" RENAME COLUMN "quantity_uom" TO "quantity"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100823030057"]]
+  [1m[35m (10.4ms)[0m  COMMIT
+Migrating to AddProductStatusPoLine (20100823034351)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "purchase_order_lines" ADD "product_status_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100823034351"]]
+  [1m[35m (3.3ms)[0m  COMMIT
+Migrating to ReceiptLinePoRelationship (20100824024011)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "receipts" DROP "purchase_order_id"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipt_lines" ADD "purchase_order_object_type" character varying(100)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "receipt_lines" ADD "purchase_order_object_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100824024011"]]
+  [1m[35m (4.1ms)[0m  COMMIT
+Migrating to AddLotName (20100828032552)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "lots" ADD "name" character varying(25) NOT NULL
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100828032552"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+Migrating to AddOrderIdOrderLine (20100911190057)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "order_lines" ADD "order_id" integer NOT NULL
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100911190057"]]
+  [1m[35m (13.5ms)[0m  COMMIT
+Migrating to AddState (20100912012716)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "assignments" ADD "state" character varying(50) NOT NULL
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "shipments" ADD "state" character varying(50) NOT NULL[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "containers" ADD "state" character varying(50) NOT NULL
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "orders" ADD "state" character varying(50) NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "purchase_orders" ADD "state" character varying(50) NOT NULL
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100912012716"]]
+  [1m[35m (17.8ms)[0m  COMMIT
+Migrating to CountryRemoveCode (20100912041458)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "countries" DROP "code"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100912041458"]]
+  [1m[35m (13.2ms)[0m  COMMIT
+Migrating to ChangeProductStatusContainerContent (20100916035821)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "container_contents" RENAME COLUMN "product_status" TO "product_status_id"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20100916035821"]]
+  [1m[35m (3.4ms)[0m  COMMIT
+Migrating to ReceiptReceiptDate (20101122024411)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "receipts" DROP "real_receipt_date"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "receipts" ADD "real_receipt_date" date[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101122024411"]]
+  [1m[36m (4.6ms)[0m  [1mCOMMIT[0m
+Migrating to CorrectReceiptLine (20101122034804)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipt_lines" DROP "purchase_order_object_type"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "receipt_lines" DROP "purchase_order_object_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "receipt_lines" ADD "purchase_order_line_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101122034804"]]
+  [1m[36m (4.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddStateToReceipts (20101126034956)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipts" ADD "state" character varying(50) NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101126034956"]]
+  [1m[36m (5.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddStateReceiptLine (20101126035453)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipt_lines" ADD "state" character varying(50) NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101126035453"]]
+  [1m[36m (5.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddReceivedAtToReceiptLine (20101126132135)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipt_lines" ADD "received_at" date[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101126132135"]]
+  [1m[36m (5.2ms)[0m  [1mCOMMIT[0m
+Migrating to RenameRealReceiptDate (20101127053835)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipts" RENAME COLUMN "real_receipt_date" TO "received_at"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101127053835"]]
+  [1m[36m (3.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddStatusToDockDoor (20101127225819)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (27.0ms)[0m  [1mALTER TABLE "dock_doors" ADD "status" character varying[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101127225819"]]
+  [1m[36m (11.6ms)[0m  [1mCOMMIT[0m
+Migrating to RenameStatusDockDoor (20101127230149)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "dock_doors" RENAME COLUMN "status" TO "state"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101127230149"]]
+  [1m[36m (2.5ms)[0m  [1mCOMMIT[0m
+Migrating to ExchangeStorageStratForDockDoor (20101127234559)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "receipt_lines" RENAME COLUMN "strorage_strategy_id" TO "dock_door_id"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101127234559"]]
+  [1m[36m (3.6ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveColumnStateFromDockDoors (20101129135200)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "dock_doors" DROP "state"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101129135200"]]
+  [1m[36m (5.4ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveIsoCountryCodeFromCompany (20101215191934)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "companies" DROP "iso_country_code"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20101215191934"]]
+  [1m[36m (5.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddStateToPurchaseOrderLine (20110117035520)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "purchase_order_lines" ADD "state" character varying(20) NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110117035520"]]
+  [1m[36m (4.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddWeightToProductPackage (20110213172245)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "product_packages" ADD "weight" decimal(8,2)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110213172245"]]
+  [1m[36m (5.1ms)[0m  [1mCOMMIT[0m
+Migrating to AssignmentDetailPolymorphic (20110214034117)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "assignment_details" DROP "from_location_id"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "assignment_details" DROP "to_location_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "assignment_details" ADD "start_location_type" character varying(25)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "assignment_details" ADD "start_location_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "assignment_details" ADD "end_location_type" character varying(25)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "assignment_details" ADD "end_location_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110214034117"]]
+  [1m[35m (3.0ms)[0m  COMMIT
+Migrating to ChangeAssigmentType (20110214042143)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "assignments" DROP "assignment_type_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "assignments" ADD "type" character varying(25) NOT NULL[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110214042143"]]
+  [1m[36m (4.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateInventoryAdjustmentTypes (20110216220313)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (27.2ms)[0m  [1mCREATE TABLE "inventory_adjustment_types" ("id" serial primary key, "code" character varying(10) NOT NULL, "name" character varying(25) NOT NULL, "description" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110216220313"]]
+  [1m[36m (19.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateInventoryAdjustments (20110216220432)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (52.2ms)[0m  [1mCREATE TABLE "inventory_adjustments" ("id" serial primary key, "inventory_adjustment_type_id" integer NOT NULL, "adjustment_type" character varying(10) NOT NULL, "adjustment_quantity" decimal(8,2) NOT NULL, "user_id" integer NOT NULL, "comments" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110216220432"]]
+  [1m[36m (10.6ms)[0m  [1mCOMMIT[0m
+Migrating to RenameTrailerNumberToShipmentNbr (20110219225035)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "shipments" RENAME COLUMN "trailer_number" TO "shipment_number"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110219225035"]]
+  [1m[36m (10.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddWarehouseIdToShipment (20110225054158)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "shipments" ADD "warehouse_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110225054158"]]
+  [1m[36m (3.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateShipmentContents (20110226051154)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (53.2ms)[0m  [1mCREATE TABLE "shipment_contents" ("id" serial primary key, "shipment_id" integer NOT NULL, "content_id" integer, "content_type" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110226051154"]]
+  [1m[36m (9.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateWaves (20110310215243)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (27.7ms)[0m  [1mCREATE TABLE "waves" ("id" serial primary key, "wave_number" character varying(25) NOT NULL, "started_running_at" timestamp, "stopped_running_at" timestamp, "state" character varying(25) NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110310215243"]]
+  [1m[36m (9.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddWaveIdToAssignmentDetails (20110310215302)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "assignment_details" ADD "wave_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110310215302"]]
+  [1m[36m (2.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddStackHeightToProdWhseSetup (20110311231506)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "product_warehouse_setups" ADD "stack_height" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110311231506"]]
+  [1m[36m (4.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddWarehouseIdToOrders (20110404024618)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "orders" ADD "warehouse_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110404024618"]]
+  [1m[36m (4.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddWebsiteToSuppliers (20110410051047)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "suppliers" ADD "website" character varying(100)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110410051047"]]
+  [1m[36m (4.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddWarehouseIdToWave (20110424174657)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "waves" ADD "warehouse_id" integer NOT NULL[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110424174657"]]
+  [1m[36m (4.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddWaveIdToOrderLines (20110424175120)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "order_lines" ADD "wave_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110424175120"]]
+  [1m[36m (4.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddAllocationStrategyIdToOrderLines (20110424200212)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "order_lines" ADD "allocation_strategy_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20110424200212"]]
+  [1m[36m (3.7ms)[0m  [1mCOMMIT[0m
+Migrating to ExtendLimitOnLotType (20110424205604)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "product_warehouse_setups" DROP "lot_management_type"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "product_warehouse_setups" ADD "lot_management_type" character varying(100) NOT NULL
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110424205604"]]
+  [1m[35m (4.5ms)[0m  COMMIT
+Migrating to AddPriorityToOrders (20110426041945)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "orders" ADD "priority" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110426041945"]]
+  [1m[35m (5.1ms)[0m  COMMIT
+Migrating to AddPriorityToAssignments (20110426042011)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "assignments" ADD "priority" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110426042011"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+Migrating to RemoveOrderPriorityFromOrders (20110701161936)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "orders" DROP "order_priority"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110701161936"]]
+  [1m[35m (5.0ms)[0m  COMMIT
+Migrating to RenameShipAddressOrders (20110718024033)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "orders" RENAME COLUMN "ship_addres_1" TO "ship_address_1"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110718024033"]]
+  [1m[35m (4.4ms)[0m  COMMIT
+Migrating to ReceiptLineUserReceived (20110813043915)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "receipt_lines" ADD "received_by_user_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110813043915"]]
+  [1m[35m (4.2ms)[0m  COMMIT
+Migrating to SwitchToHasSecurePassword (20110906202829)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" RENAME COLUMN "hashed_password" TO "password_digest"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20110906202829"]]
+  [1m[35m (4.0ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_strategies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_strategy_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_strategy_rules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_zones'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'assignment_details'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'assignment_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'assignments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'companies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'container_contents'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'container_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'containers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'countries'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'customer_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'customers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'dock_doors'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'inventory_adjustment_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'inventory_adjustments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'location_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'locations'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'lots'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'order_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'order_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_categories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_location_assignments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_packages'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_statuses'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_subcategories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_warehouse_setups'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'products'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'purchase_order_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'purchase_order_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'purchase_orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'receipt_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'receipt_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'receipts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'shipment_contents'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'shipments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_strategies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_strategy_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_strategy_rules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_zones'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'suppliers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'system_parameters'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'uoms'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'warehouses'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'waves'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateContainers (20100406181330)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "containers" ("id" serial primary key, "lp" character varying(50) NOT NULL, "container_location_id" integer NOT NULL, "container_location_type" character varying NOT NULL, "container_type_id" integer, "length" decimal(8,2), "width" decimal(8,2), "height" decimal(8,2), "max_weight" decimal(8,2), "asn_id" integer, "integer" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateContainers (20100406181330)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (56.5ms)[0m  [1mCREATE TABLE "containers" ("id" serial primary key, "lp" character varying(50) NOT NULL, "container_location_id" integer NOT NULL, "container_location_type" character varying NOT NULL, "container_type_id" integer, "length" decimal(8,2), "width" decimal(8,2), "height" decimal(8,2), "max_weight" decimal(8,2), "asn_id" integer, "integer" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20100406181330"]]
+  [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_strategies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_strategy_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_strategy_rules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'allocation_zones'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'assignment_details'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'assignment_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'assignments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'companies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'container_contents'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'container_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'containers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'countries'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'customer_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'customers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'dock_doors'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'inventory_adjustment_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'inventory_adjustments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'location_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'locations'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'lots'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'order_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'order_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_categories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_location_assignments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_packages'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_statuses'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_subcategories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'product_warehouse_setups'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'products'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'purchase_order_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'purchase_order_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'purchase_orders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'receipt_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'receipt_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'receipts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'shipment_contents'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'shipments'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_strategies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_strategy_lines'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_strategy_rules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'storage_zones'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'suppliers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'system_parameters'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'uoms'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'warehouses'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'waves'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
